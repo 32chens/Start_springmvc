@@ -9,6 +9,8 @@
 	http://www.springframework.org/schema/context 
 	http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
+	<!-- 配置静态资源的访问方式 -->
+	<mvc:default-servlet-handler />
 	<!-- 指定需要扫描的包 -->
 	<context:component-scan base-package="com.ssm.controller"/>
 	<!-- 配置注解驱动 -->
@@ -20,5 +22,13 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<!-- 设置后缀 -->
 		<property name="suffix" value=".jsp" />
+	</bean>
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" >
+       <property name="messageConverters">
+            <list>
+                  <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+            </list>
+       </property>
 	</bean>
 </beans> 
